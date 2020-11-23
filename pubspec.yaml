@@ -1,0 +1,125 @@
+name: uplanit_supplier
+description: A new Flutter project.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  google_fonts: ^1.1.0
+  font_awesome_flutter: ^8.10.0
+  http: ^0.12.2
+  dio: ^3.0.10
+  carousel_pro: ^1.0.0
+  cupertino_icons: ^1.0.0
+  provider: ^4.3.2+2
+  confetti: ^0.5.4+1
+  html_editor: ^1.0.1
+  autocomplete_textfield: ^1.6.4
+  # multiselect_formfield: ^0.1.4 
+  dotted_border: ^1.0.6
+  uplanit_calendar:
+    path: ../uplanit_calendar
+
+  firebase_core: "^0.5.0+1"
+  firebase_auth: "^0.18.1+2"
+  google_sign_in: "^4.5.1"
+  # flutter_facebook_auth: ^1.0.0
+  # flutter_facebook_login: "3.0.0"
+  # flutter_login_facebook: ^0.4.0+1
+  flutter_facebook_login: ^1.1.1
+
+  rxdart: ^0.24.1
+  get_it: ^5.0.1
+  uuid: ^2.2.2
+  image_picker: ^0.6.7+12
+  mime_type: ^0.3.2
+  path: ^1.7.0 
+  shared_preferences: ^0.5.12+2
+  cached_network_image: ^2.3.3
+  intl: ^0.16.1
+  flutter_inappwebview: ^4.0.0+4
+  overlay: ^0.0.1
+
+  google_maps_flutter: ^0.5.13
+  geocoding: ^1.0.5
+  google_place: ^0.3.3
+  search_map_place: ^0.3.0
+  geolocator: ^6.1.5
+  location: ^3.0.1
+  
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  
+flutter:
+
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/
+    # - assets/images/Vector.png
+    # - assets/images/heroImage.png
+    # - assets/images/logo2.png
+    # - assets/images/logo.png
+    # - assets/images/logo-w.png
+    # - assets/images/image1.jpg
+    # - assets/images/image2.jpg
+    # - assets/images/image3.jpg
+    # - assets/images/image4.jpg
+    # - assets/images/Ellipse 12.png
+    # - assets/images/Rectangle15.png
+    # - assets/images/Rectangle16.png
+    # - assets/images/Rectangle17.png
+    # - assets/images/Rectangle18.png
+    # - assets/images/Rectangle19.png
+    # - assets/images/Rectangle20.png
+    # - assets/images/Rectangle21.png
+    # - assets/images/Rectangle22.png
+    # - assets/images/facebook.png
+    # - assets/images/google.png
+    # - assets/images/map.png
+
+    # - assets/Notch.png
+    # - assets/supplier.png
+    # - assets/supplier2.png
+    # - assets/images/img1.png
+    # - assets/images/img2.png
+    # - assets/images/img3.png
+    # - assets/images/img4.png
+  #   - images/a_dot_ham.jpeg
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware.
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages

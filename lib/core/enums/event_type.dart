@@ -1,0 +1,1 @@
+enum EventTypeEnum { CREATE_EVENT_TYPE, UPDATE_EVENT_TYPE }

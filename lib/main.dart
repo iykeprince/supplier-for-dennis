@@ -9,6 +9,7 @@ import 'package:uplanit_supplier/core/bloc/onboard_bloc.dart';
 import 'package:uplanit_supplier/core/services/authentication_service.dart';
 import 'package:uplanit_supplier/core/services/onboard_service.dart';
 import 'package:uplanit_supplier/core/utils/constant_util.dart';
+import 'package:uplanit_supplier/core/viewmodels/business_info_model.dart';
 import 'package:uplanit_supplier/core/viewmodels/category_provider.dart';
 import 'package:uplanit_supplier/core/viewmodels/drawer_model.dart';
 import 'package:uplanit_supplier/core/viewmodels/event_type_provider.dart';
@@ -80,6 +81,11 @@ class MyApp extends StatelessWidget {
         //payment provider
         ChangeNotifierProvider<PaymentProviderModel>(
             create: (_) => locator<PaymentProviderModel>()),
+
+        //business info
+        ChangeNotifierProvider<BusinessInfoModel>(
+            create: (_) => locator<BusinessInfoModel>()),
+
         StreamProvider(
           create: (context) =>
               context.read<AuthenticationService>().authStateChanges,

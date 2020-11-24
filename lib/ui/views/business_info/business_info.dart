@@ -23,7 +23,8 @@ class BusinessInfoPage extends StatelessWidget {
         child: ListView(
           children: [
             Column(
-              // crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
                     'Business information helps provide more information  about your business and company details. This information will be provided in invoices sent out from uplanit',
@@ -57,19 +58,21 @@ class BusinessInfoPage extends StatelessWidget {
                   },
                   value: model.selectedBusinessType,
                 ),
-                CustomTextField(
-                  keyboardType: TextInputType.text,
-                  color: Colors.black,
-                ),
-                SizedBox(height: 3),
-                Text(
-                  'This cannot be changed after initial selection',
-                  style: GoogleFonts.workSans(
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                RegCompanyWidget(),
+                // CustomTextField(
+                //   keyboardType: TextInputType.text,
+                //   color: Colors.black,
+                // ),
+                // SizedBox(height: 3),
+                // Text(
+                //   'This cannot be changed after initial selection',
+                //   style: GoogleFonts.workSans(
+                //     fontSize: 14.0,
+                //     fontWeight: FontWeight.w400,
+                //   ),
+                // ),
+                // RegCompanyWidget(),
+                model.isSoleTraderSelected == null ? Container() : FormWidget(),
+                //End form
                 SizedBox(height: 40),
                 CustomButton(
                   onPressed: () => Navigator.pop(context),
@@ -89,99 +92,137 @@ class BusinessInfoPage extends StatelessWidget {
   }
 }
 
-class SoleTraderWidget extends StatelessWidget {
-  const SoleTraderWidget({
+class FormWidget extends StatelessWidget {
+  FormWidget({
     Key key,
   }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          'Business Representative',
-          style: GoogleFonts.workSans(
-            fontSize: 18.0,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        CustomTextField(
-          keyboardType: TextInputType.text,
-          color: Colors.black,
-        ),
-        SizedBox(height: 20),
-        Text(
-          'Business phone numbers',
-          style: GoogleFonts.workSans(
-            fontSize: 18.0,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        CustomTextField(
-          keyboardType: TextInputType.phone,
-          color: Colors.black,
-        ),
-      ],
-    );
-  }
-}
-
-class RegCompanyWidget extends StatelessWidget {
-  const RegCompanyWidget({
-    Key key,
-  }) : super(key: key);
+  BusinessInfoModel model;
 
   @override
   Widget build(BuildContext context) {
+    model = Provider.of<BusinessInfoModel>(context);
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Registered Company Name',
-          style: GoogleFonts.workSans(
-            fontSize: 18.0,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        CustomTextField(
-          keyboardType: TextInputType.text,
-          color: Colors.black,
-        ),
-        SizedBox(height: 20),
-        Text(
-          'Business phone numbers',
-          style: GoogleFonts.workSans(
-            fontSize: 18.0,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        CustomTextField(
-          keyboardType: TextInputType.phone,
-          color: Colors.black,
-        ),
-        SizedBox(height: 20),
+        model.isSoleTraderSelected
+            ? Container()
+            : Text(
+                'Registered Company Name',
+                style: GoogleFonts.workSans(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+        model.isSoleTraderSelected
+            ? Container()
+            : StreamBuilder(
+                stream: model.companyNameStream,
+                builder: (context, snapshot) {
+                  print(
+                      'company name stream value: ${snapshot.data} or error: ${snapshot.error}}');
+                  return CustomTextField(
+                    keyboardType: TextInputType.text,
+                    color: Colors.black,
+                    value: snapshot.data,
+                    onChanged: model.changeCompanyName,
+                    errorText: snapshot.error,
+                  );
+                }),
+        model.isSoleTraderSelected ? Container() : SizedBox(height: 20),
+        model.isSoleTraderSelected
+            ? Container()
+            : Text(
+                'Company Number',
+                style: GoogleFonts.workSans(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+        model.isSoleTraderSelected
+            ? Container()
+            : StreamBuilder(
+                stream: model.companyNumberStream,
+                builder: (context, snapshot) {
+                  print(
+                      'company number stream value: ${snapshot.data} or error: ${snapshot.error}}');
+                  return CustomTextField(
+                    keyboardType: TextInputType.phone,
+                    color: Colors.black,
+                    value: snapshot.data,
+                    onChanged: model.changeCompanyNumber,
+                    errorText: snapshot.error,
+                  );
+                }),
+        model.isSoleTraderSelected ? Container() : SizedBox(height: 20),
         Text(
           'Business Representative',
           style: GoogleFonts.workSans(
-            fontSize: 18.0,
+            fontSize: 16.0,
             fontWeight: FontWeight.w500,
           ),
         ),
-        CustomTextField(
-          keyboardType: TextInputType.text,
-          color: Colors.black,
-        ),
+        StreamBuilder(
+            stream: model.businessRepresentativeStream,
+            builder: (context, snapshot) {
+              print(
+                  'business rep stream value: ${snapshot.data} or error: ${snapshot.error}}');
+              return CustomTextField(
+                keyboardType: TextInputType.text,
+                color: Colors.black,
+                title: snapshot.data,
+                onChanged: model.changeBusinessRepresentative,
+                errorText: snapshot.error,
+              );
+            }),
         SizedBox(height: 20),
         Text(
-          'Contact Phone Number',
+          'Contact Number',
           style: GoogleFonts.workSans(
-            fontSize: 18.0,
+            fontSize: 16.0,
             fontWeight: FontWeight.w500,
           ),
         ),
-        CustomTextField(
-          keyboardType: TextInputType.text,
-          color: Colors.black,
-        ),
+        StreamBuilder(
+            stream: model.contactNumberStream,
+            builder: (context, snapshot) {
+              print(
+                  'contact number stream value: ${snapshot.data} or error: ${snapshot.error}}');
+
+              return CustomTextField(
+                keyboardType: TextInputType.text,
+                color: Colors.black,
+                title: snapshot.data,
+                onChanged: model.changeContactNumber,
+                errorText: snapshot.error,
+              );
+            }),
+        SizedBox(height: 20),
+        model.isSoleTraderSelected
+            ? Container()
+            : Text(
+                'VAT Number',
+                style: GoogleFonts.workSans(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+        model.isSoleTraderSelected
+            ? Container()
+            : StreamBuilder(
+                stream: model.vatStream,
+                builder: (context, snapshot) {
+                  print(
+                      'vat stream value: ${snapshot.data} or error: ${snapshot.error}}');
+                  return CustomTextField(
+                    keyboardType: TextInputType.text,
+                    color: Colors.black,
+                    onChanged: model.changeVat,
+                    value: snapshot.data,
+                    errorText: snapshot.error,
+                  );
+                }),
       ],
     );
   }
